@@ -28,3 +28,9 @@ jobs:
           gpg-enabled: true
           gpg-key-id: ${{ secrets.GPG_KEY_ID }}
           gpg-key: ${{ secrets.GPG_KEY }}
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
